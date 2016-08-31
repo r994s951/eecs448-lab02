@@ -1,6 +1,6 @@
 /**
-*	@author 
-*	@date 
+*	@author Rony Singh
+*	@date 08/31/2016
 *	@file LinkedList.hpp
 *	@brief Implementation file for templated LinkedList class
 */
@@ -27,24 +27,28 @@ bool LinkedList<T>::isEmpty() const
 }
 
 template <typename T>
-int LinkedList<T>::size() const
+int LinkedList<T>::size() const//Changed
 {
-	/** TODO 
-		Fix this method
-	*/
-	return(0);
+	return(m_size);
 }
 
 template <typename T>
-bool LinkedList<T>::search(T value) const
+bool LinkedList<T>::search(T value) const   //Changed
 {
 	Node<T>* temp = m_front;
 	bool isFound = false;
 
-	/** TODO 
-		Fix this method
-	*/
-
+	while(temp!=nullptr)
+	{
+		if(temp->getValue()==value)
+		{
+			isFound=true;
+		}
+		else
+		{
+			temp=temp->getNext();
+		}
+	}
 	return(isFound);
 }
 
@@ -102,11 +106,24 @@ bool LinkedList<T>::removeBack()
 	Node<T>* lastNode = nullptr;
 	Node<T>* secondintoLast = nullptr;
 	bool isRemoved = false;
-
-	/** TODO 
-		Fix this method
-	*/
-
+	if(isEmpty())
+	{
+		return(false);
+	}
+	else
+	{
+		lastNode=m_front;
+		while(lastNode->getNext()!=nullptr)
+		{
+			secondintoLast=lastNode;
+			lastNode=lastNode->getNext();
+		}
+		secondintoLast->setNext(nullptr);
+		delete lastNode;
+		lastNode=nullptr;
+		m_size--;
+		isRemoved=true;
+	}
 	return(isRemoved);
 }	
 
